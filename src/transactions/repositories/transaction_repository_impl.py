@@ -33,7 +33,7 @@ class TransactionRepositoryImpl(TransactionRepository):
                 statement = statement.where(Transaction.timestamp >= from_date)
             if to_date is not None:
                 statement = statement.where(Transaction.timestamp <= to_date)
-            statement = statement.join()
+            statement = statement.join(Transaction.patient).join(Transaction.pharmacy)
             return list(session.scalars(statement))
 
 

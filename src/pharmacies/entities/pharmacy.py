@@ -1,4 +1,5 @@
 from sqlalchemy import String, Column
+from sqlalchemy.orm import relationship
 
 from src.config.database_conn import Base
 
@@ -9,4 +10,4 @@ class Pharmacy(Base):
     name = Column('NAME', String)
     city = Column('CITY', String)
 
-    #transactions = relationship("Transaction", back_populates="pharmacy", cascade="all, delete-orphan")
+    transactions = relationship("Transaction", back_populates="pharmacy", cascade="all, delete-orphan")
