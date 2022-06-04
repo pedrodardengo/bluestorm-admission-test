@@ -5,12 +5,11 @@ from src.pharmacies.entities.pharmacy import Pharmacy
 
 
 class PharmacyRepository(ABC):
-
     @abstractmethod
     def find_pharmacies_where(
-            self,
-            name: str | None,
-            city: str | None,
+        self,
+        name: str | None,
+        city: str | None,
     ) -> list[Pharmacy]:
         ...
 

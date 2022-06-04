@@ -1,7 +1,7 @@
 from pydantic import BaseModel, validator
 from pydantic.class_validators import Optional
 
-from src.tools.password_tools import check_password_strength, get_salt, get_hash
+from src.tools.password_tools import check_password_strength, get_hash, get_salt
 
 
 class IncomingUserDTO(BaseModel):
@@ -19,21 +19,17 @@ class IncomingUserDTO(BaseModel):
         return f"{salt} {hashed_password}"
 
     class Config:
-        schema_extra = {
-            "normal": {
-                "summary": "An accepted user password",
-                "description": "The password is strong enough for the sign-up process",
-                "value": {
-                    "username": "pedro",
-                    "password": "Aa!!1111"
-                }
+        schema_extra = (
+            {
+                "normal": {
+                    "summary": "An accepted user password",
+                    "description": "The password is strong enough for the sign-up process",
+                    "value": {"username": "pedro", "password": "Aa!!1111"},
+                },
+                "invalid": {
+                    "summary": "Invalid Password",
+                    "description": "The password is not strong enough for the sign-up process",
+                    "value": {"username": "pedro", "password": "Aa!!1111"},
+                },
             },
-            "invalid": {
-                "summary": "Invalid Password",
-                "description": "The password is not strong enough for the sign-up process",
-                "value": {
-                    "username": "pedro",
-                    "password": "Aa!!1111"
-                }
-            },
-        },
+        )

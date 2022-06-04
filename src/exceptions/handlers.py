@@ -29,10 +29,10 @@ def not_found_handler(request: Request, exc: AssetNotFound) -> JSONResponse:
     )
 
 
-def empty_query_params_handler(request: Request, exc: QueryParamsCantAllBeNone) -> JSONResponse:
+def empty_query_params_handler(
+    request: Request, exc: QueryParamsCantAllBeNone
+) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
-        content={
-            "error": exc.message
-        },
+        content={"error": exc.message},
     )

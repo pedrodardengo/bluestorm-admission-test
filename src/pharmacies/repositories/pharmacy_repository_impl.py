@@ -10,11 +10,10 @@ from src.pharmacies.pharmacy_repository import PharmacyRepository
 
 
 class PharmacyRepositoryImpl(PharmacyRepository):
-
     def find_pharmacies_where(
-            self,
-            name: str | None,
-            city: str | None,
+        self,
+        name: str | None,
+        city: str | None,
     ) -> list[Pharmacy]:
         with Session(ENGINE) as session:
             statement = select(Pharmacy)

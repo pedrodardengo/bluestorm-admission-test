@@ -1,22 +1,22 @@
-from fastapi import APIRouter, Depends, Body
+from fastapi import APIRouter, Body, Depends
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
-from src.auth.services.auth_service import AuthService, auth_service_factory
 from src.auth.dto.token_dto import Token
+from src.auth.services.auth_service import AuthService, auth_service_factory
 from src.users.dto.incoming_user_dto import IncomingUserDTO
 from src.users.entities.user_entity import User
 
 auth_router = APIRouter(
     prefix="/auth",
-    tags=['Authentication'],
-    dependencies=[Depends(auth_service_factory)]
+    tags=["Authentication"],
+    dependencies=[Depends(auth_service_factory)],
 )
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 
 def get_user_from_token(
-        token: str = Depends(oauth2_scheme),
-        auth_service: AuthService = Depends(auth_service_factory),
+    token: str = Depends(oauth2_scheme),
+    auth_service: AuthService = Depends(auth_service_factory),
 ) -> User:
     """
     Every end point that wants to be protected by a OAuth2 standard needs to depend on this function.
@@ -27,8 +27,8 @@ def get_user_from_token(
 
 @auth_router.post("/signup")
 async def sign_up(
-        user: IncomingUserDTO = Body(),
-        auth_service: AuthService = Depends(auth_service_factory)
+    user: IncomingUserDTO = Body(),
+    auth_service: AuthService = Depends(auth_service_factory),
 ) -> None:
     """
     Signs up the user in the repositories, it delegates to the
@@ -39,8 +39,8 @@ async def sign_up(
 
 @auth_router.post("/token", response_model=Token)
 async def get_access_token(
-        form_data: OAuth2PasswordRequestForm = Depends(),
-        auth_service: AuthService = Depends(auth_service_factory),
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    auth_service: AuthService = Depends(auth_service_factory),
 ) -> Token:
     """
     Retrieves a token given that a form data containing an existing username with correct password.

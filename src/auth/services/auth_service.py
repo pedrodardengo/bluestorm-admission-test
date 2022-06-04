@@ -4,11 +4,9 @@ from fastapi import Depends
 from jose import jwt
 
 from src.auth.dto.token_dto import Token
-from src.exceptions.auth import (CouldNotValidate,
-                                 InvalidPassword,
-                                 TokenHasExpired)
-from src.exceptions.not_found import UserNotFound
 from src.config.settings import Settings, settings_factory
+from src.exceptions.auth import CouldNotValidate, InvalidPassword, TokenHasExpired
+from src.exceptions.not_found import UserNotFound
 from src.users.dto.incoming_user_dto import IncomingUserDTO
 from src.users.entities.user_entity import User
 from src.users.services.user_service import UserService, user_service_factory
@@ -67,8 +65,10 @@ class AuthService:
         """
         try:
             data = jwt.decode(token, self.__settings.TOKEN_SECRET, algorithms=["HS256"])
-            user = self.__user_service.find_user_by_username(data.get("sub"))
-            return user
+            stored_user = self.__user_service.find_user_by_username(data.get("sub"))
+            if stored_user is None:
+                raise CouldNotValidate()
+            return stored_user
         except jwt.ExpiredSignatureError:
             raise TokenHasExpired()
         except Exception:
@@ -77,7 +77,7 @@ class AuthService:
 
 @lru_cache
 def auth_service_factory(
-        user_service: UserService = Depends(user_service_factory),
-        settings: Settings = Depends(settings_factory),
+    user_service: UserService = Depends(user_service_factory),
+    settings: Settings = Depends(settings_factory),
 ) -> AuthService:
     return AuthService(user_service, settings)

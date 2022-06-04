@@ -5,7 +5,6 @@ from src.patients.entities.patient import Patient
 
 
 class PatientRepository(ABC):
-
     @abstractmethod
     def find_by_id(self, patient_id: str) -> Optional[Patient]:
         ...

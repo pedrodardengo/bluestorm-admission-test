@@ -1,17 +1,16 @@
-
 from functools import lru_cache
 
 from fastapi import Depends
 
 from src.exceptions.not_found import PharmacyNotFound
-
 from src.pharmacies.entities.pharmacy import Pharmacy
 from src.pharmacies.pharmacy_repository import PharmacyRepository
-from src.pharmacies.repositories.pharmacy_repository_impl import pharmacy_repository_impl_factory
+from src.pharmacies.repositories.pharmacy_repository_impl import (
+    pharmacy_repository_impl_factory,
+)
 
 
 class PharmacyService:
-
     def __init__(self, pharmacy_repository: PharmacyRepository):
         self.__pharmacy_repo = pharmacy_repository
 
@@ -22,15 +21,15 @@ class PharmacyService:
         return pharmacy
 
     def get_pharmacies_where(
-            self,
-            name: str | None,
-            city: str | None,
+        self,
+        name: str | None,
+        city: str | None,
     ) -> list[Pharmacy]:
         return self.__pharmacy_repo.find_pharmacies_where(name, city)
 
 
 @lru_cache
 def pharmacy_service_factory(
-        pharmacy_repository: PharmacyRepository = Depends(pharmacy_repository_impl_factory)
+    pharmacy_repository: PharmacyRepository = Depends(pharmacy_repository_impl_factory),
 ) -> PharmacyService:
     return PharmacyService(pharmacy_repository)

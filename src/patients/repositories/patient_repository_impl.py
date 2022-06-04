@@ -10,7 +10,6 @@ from src.patients.patient_repository import PatientRepository
 
 
 class PatientRepositoryImpl(PatientRepository):
-
     def find_by_id(self, patient_id: str) -> Optional[Patient]:
         with Session(ENGINE) as session:
             statement = select(Patient).where(Patient.id == patient_id)
