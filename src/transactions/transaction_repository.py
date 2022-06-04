@@ -14,7 +14,7 @@ class TransactionRepository(ABC):
             pharmacy_id: str | None,
             less_than: float | None,
             more_than: float | None,
-            from_date: datetime | None,
-            to_date: datetime | None,
+            after_date: datetime | None,
+            before_date: datetime | None,
     ) -> list[Transaction]:
         ...

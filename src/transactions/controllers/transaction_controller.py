@@ -20,17 +20,24 @@ async def get_transactions(
         pharmacy_id: str = Query(None),
         less_than: float = Query(None),
         more_than: float = Query(None),
-        from_date: str = Query(None),
-        to_date: str = Query(None),
+        after_date: str = Query(None),
+        before_date: str = Query(None),
         transaction_service: TransactionService = Depends(transaction_service_factory)
 ) -> list[Transaction]:
-    if not any({patient_id, pharmacy_id, less_than, more_than, from_date, to_date}):
-        raise QueryParamsCantAllBeNone(['patient_id', 'pharmacy_id', 'less_than', 'more_than', 'from_date', 'to_date'])
+    """
+    Gets a list of transactions that may be queried by the UUID of the pharmacy or of the patient, by transactions that
+    have amounts greater of smaller than a certain value, before a certain date or after a certain date
+    (date should ONLY be expressed in this format 2019-02-25 20:30:54).
+    """
+    if not any({patient_id, pharmacy_id, less_than, more_than, after_date, before_date}):
+        raise QueryParamsCantAllBeNone(
+            ['patient_id', 'pharmacy_id', 'less_than', 'more_than', 'after_date', 'before_date']
+        )
     return transaction_service.get_transactions_where(
         patient_id,
         pharmacy_id,
         less_than,
         more_than,
-        from_date,
-        to_date,
+        after_date,
+        before_date,
     )

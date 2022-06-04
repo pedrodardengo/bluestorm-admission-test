@@ -16,8 +16,8 @@ class TransactionRepositoryImpl(TransactionRepository):
             pharmacy_id: str | None,
             less_than: float | None,
             more_than: float | None,
-            from_date: datetime | None,
-            to_date: datetime | None,
+            after_date: datetime | None,
+            before_date: datetime | None,
     ) -> list[Transaction]:
         with Session(ENGINE) as session:
             statement = select(Transaction)
@@ -29,10 +29,10 @@ class TransactionRepositoryImpl(TransactionRepository):
                 statement = statement.where(Transaction.amount <= less_than)
             if more_than is not None:
                 statement = statement.where(Transaction.amount >= more_than)
-            if from_date is not None:
-                statement = statement.where(Transaction.timestamp >= from_date)
-            if to_date is not None:
-                statement = statement.where(Transaction.timestamp <= to_date)
+            if after_date is not None:
+                statement = statement.where(Transaction.timestamp >= after_date)
+            if before_date is not None:
+                statement = statement.where(Transaction.timestamp <= before_date)
             statement = statement.join(Transaction.patient).join(Transaction.pharmacy)
             return list(session.scalars(statement))
 

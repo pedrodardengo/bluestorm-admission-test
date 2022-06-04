@@ -19,6 +19,9 @@ async def get_pharmacy(
         pharmacy_id: str,
         pharmacy_service: PharmacyService = Depends(pharmacy_service_factory)
 ) -> Pharmacy:
+    """
+    Gets a single pharmacy by specifying the UUID of the pharmacy.
+    """
     return pharmacy_service.get_pharmacy_by_id(pharmacy_id)
 
 
@@ -28,6 +31,9 @@ async def get_pharmacies(
         city: str = Query(None),
         pharmacy_service: PharmacyService = Depends(pharmacy_service_factory)
 ) -> list[Pharmacy]:
+    """
+    Gets a list of pharmacies that may be queried by name of city.
+    """
     if name is None and city is None:
         raise QueryParamsCantAllBeNone(['name', 'city'])
     return pharmacy_service.get_pharmacies_where(name, city)
