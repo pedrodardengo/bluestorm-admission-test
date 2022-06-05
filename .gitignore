@@ -8,3 +8,4 @@ htmlmypy
 .vscode
 profile.*
 *.diff
+.mypy_cache

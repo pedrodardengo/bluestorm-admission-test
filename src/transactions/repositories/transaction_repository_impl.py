@@ -10,6 +10,13 @@ from src.transactions.transaction_repository import TransactionRepository
 
 
 class TransactionRepositoryImpl(TransactionRepository):
+    def find_transactions_by_id(self, transaction_id: str) -> Transaction:
+        with Session(ENGINE) as session:
+            statement = (
+                select(Transaction).join(Transaction.patient).join(Transaction.pharmacy)
+            )
+            return session.scalars(statement).one_or_none()
+
     def find_transactions_where(
         self,
         patient_id: str | None,

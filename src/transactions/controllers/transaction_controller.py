@@ -17,6 +17,7 @@ transaction_router = APIRouter(
 
 @transaction_router.get("/")
 async def get_transactions(
+    transaction_id: str = Query(None),
     patient_id: str = Query(None),
     pharmacy_id: str = Query(None),
     less_than: float = Query(None),
@@ -24,18 +25,26 @@ async def get_transactions(
     after_date: str = Query(None),
     before_date: str = Query(None),
     transaction_service: TransactionService = Depends(transaction_service_factory),
-) -> list[Transaction]:
+) -> Transaction | list[Transaction]:
     """
     Gets a list of transactions that may be queried by the UUID of the pharmacy or of the patient, by transactions that
     have amounts greater of smaller than a certain value, before a certain date or after a certain date
     (date should ONLY be expressed in this format 2019-02-25 20:30:54).
     """
     if not any(
-        {patient_id, pharmacy_id, less_than, more_than, after_date, before_date}
+        {
+            transaction_id,
+            patient_id,
+            pharmacy_id,
+            less_than,
+            more_than,
+            after_date,
+            before_date,
+        }
     ):
         raise QueryParamsCantAllBeNone(
             [
-                "patient_id",
+                "transaction_id" "patient_id",
                 "pharmacy_id",
                 "less_than",
                 "more_than",
@@ -43,6 +52,8 @@ async def get_transactions(
                 "before_date",
             ]
         )
+    if transaction_id is not None:
+        return transaction_service.get_transaction_by_id(transaction_id)
     return transaction_service.get_transactions_where(
         patient_id,
         pharmacy_id,

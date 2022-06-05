@@ -15,5 +15,7 @@ class TokenHasExpired(Unauthorized):
 
 
 class CouldNotValidate(Unauthorized):
+    MESSAGE = "It was not possible to validate the token."
+
     def __init__(self) -> None:
-        super().__init__("It was not possible to validate the token.")
+        super().__init__(self.MESSAGE)

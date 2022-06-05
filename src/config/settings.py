@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from functools import lru_cache
-
+import pytz  # type: ignore
 from pydantic import BaseSettings
 
 
@@ -15,7 +15,7 @@ class Settings(BaseSettings):
         Returns the datetime of when the token will expire.
         :return: a datetime object
         """
-        now = datetime.now()
+        now = datetime.now(pytz.timezone("America/Sao_Paulo"))
         return now + timedelta(minutes=self.MINUTES_FOR_TOKEN_EXPIRATION)
 
     def __hash__(self):

@@ -14,6 +14,9 @@ class TransactionService:
     def __init__(self, transaction_repository: TransactionRepository):
         self.__transaction_repo = transaction_repository
 
+    def get_transaction_by_id(self, transaction_id: str) -> Transaction:
+        return self.__transaction_repo.find_transactions_by_id(transaction_id)
+
     def get_transactions_where(
         self,
         patient_id: str | None,

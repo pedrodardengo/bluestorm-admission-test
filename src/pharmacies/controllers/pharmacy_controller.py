@@ -13,26 +13,18 @@ pharmacy_router = APIRouter(
 )
 
 
-@pharmacy_router.get("/{pharmacy_id}")
-async def get_pharmacy(
-    pharmacy_id: str,
-    pharmacy_service: PharmacyService = Depends(pharmacy_service_factory),
-) -> Pharmacy:
-    """
-    Gets a single pharmacy by specifying the UUID of the pharmacy.
-    """
-    return pharmacy_service.get_pharmacy_by_id(pharmacy_id)
-
-
 @pharmacy_router.get("/")
 async def get_pharmacies(
+    pharmacy_id: str = Query(None),
     name: str = Query(None),
     city: str = Query(None),
     pharmacy_service: PharmacyService = Depends(pharmacy_service_factory),
-) -> list[Pharmacy]:
+) -> Pharmacy | list[Pharmacy]:
     """
     Gets a list of pharmacies that may be queried by name of city.
     """
-    if name is None and city is None:
-        raise QueryParamsCantAllBeNone(["name", "city"])
+    if not any({pharmacy_id, name, city}):
+        raise QueryParamsCantAllBeNone(["pharmacy_id", "name", "city"])
+    if pharmacy_id is not None:
+        return pharmacy_service.get_pharmacy_by_id(pharmacy_id)
     return pharmacy_service.get_pharmacies_where(name, city)

@@ -16,3 +16,7 @@ class TransactionRepository(ABC):
         before_date: datetime | None,
     ) -> list[Transaction]:
         ...
+
+    @abstractmethod
+    def find_transactions_by_id(self, transaction_id: str) -> Transaction:
+        ...
