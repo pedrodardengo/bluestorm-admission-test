@@ -1,10 +1,8 @@
 import pytest as pytest
-
-from tests.acceptance.driver import driver_factory
 from tests.acceptance.dsl.pharmacy_dsl import PharmacyDSL
 
-driver = driver_factory()
-pharmacy_dsl = PharmacyDSL(driver)
+
+pharmacy_dsl = PharmacyDSL()
 
 
 @pytest.fixture(autouse=True)

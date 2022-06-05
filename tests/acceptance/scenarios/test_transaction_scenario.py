@@ -1,10 +1,8 @@
 import pytest as pytest
-
-from tests.acceptance.driver import driver_factory
 from tests.acceptance.dsl.transaction_dsl import TransactionDSL
 
-driver = driver_factory()
-transaction_dsl = TransactionDSL(driver)
+
+transaction_dsl = TransactionDSL()
 
 
 @pytest.fixture(autouse=True)

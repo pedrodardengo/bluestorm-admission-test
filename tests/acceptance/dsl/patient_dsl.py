@@ -1,11 +1,12 @@
 from src.exceptions.not_found import PatientNotFound
-from tests.acceptance.driver import Driver
+from tests.acceptance.drivers.patient_driver import PatientDriver
 from tests.acceptance.dsl.auth_dsl import AuthDSL
 
 
 class PatientDSL(AuthDSL):
-    def __init__(self, driver: Driver) -> None:
-        AuthDSL.__init__(self, driver)
+    def __init__(self) -> None:
+        AuthDSL.__init__(self)
+        self._driver = PatientDriver()
         self.__patient_id = ""
 
     def reset_data_cache(self):

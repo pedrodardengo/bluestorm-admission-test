@@ -1,11 +1,12 @@
 from src.exceptions.not_found import TransactionNotFound
-from tests.acceptance.driver import Driver
+from tests.acceptance.drivers.transaction_driver import TransactionDriver
 from tests.acceptance.dsl.auth_dsl import AuthDSL
 
 
 class TransactionDSL(AuthDSL):
-    def __init__(self, driver: Driver) -> None:
-        AuthDSL.__init__(self, driver)
+    def __init__(self) -> None:
+        AuthDSL.__init__(self)
+        self._driver = TransactionDriver()
         self.__transaction_id = ""
 
     def reset_data_cache(self):

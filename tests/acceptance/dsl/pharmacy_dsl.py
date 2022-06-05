@@ -1,11 +1,12 @@
 from src.exceptions.not_found import PharmacyNotFound
-from tests.acceptance.driver import Driver
+from tests.acceptance.drivers.pharmacy_driver import PharmacyDriver
 from tests.acceptance.dsl.auth_dsl import AuthDSL
 
 
 class PharmacyDSL(AuthDSL):
-    def __init__(self, driver: Driver) -> None:
-        AuthDSL.__init__(self, driver)
+    def __init__(self) -> None:
+        AuthDSL.__init__(self)
+        self._driver = PharmacyDriver()
         self.__pharmacy_id = ""
 
     def reset_data_cache(self):

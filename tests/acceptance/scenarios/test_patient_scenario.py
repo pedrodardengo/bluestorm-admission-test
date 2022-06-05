@@ -1,10 +1,8 @@
 import pytest as pytest
-
-from tests.acceptance.driver import driver_factory
 from tests.acceptance.dsl.patient_dsl import PatientDSL
 
-driver = driver_factory()
-patient_dsl = PatientDSL(driver)
+
+patient_dsl = PatientDSL()
 
 
 @pytest.fixture(autouse=True)

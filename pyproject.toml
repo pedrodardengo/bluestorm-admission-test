@@ -31,3 +31,6 @@ mypy = "^0.960"
 pytest = "^7.1.2"
 requests = "^2.27.1"
 types-pytz = "^2021.3.8"
+
+[tool.pytest]
+args = ['--rootdir=./']
