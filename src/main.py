@@ -3,7 +3,7 @@ import os
 import uvicorn
 from fastapi import FastAPI
 
-from src.auth.controllers import auth_controller
+from src.modules.auth.controllers import auth_controller
 from src.exceptions.already_exists import AssetAlreadyExists
 from src.exceptions.auth import Unauthorized
 from src.exceptions.handlers import (
@@ -14,9 +14,9 @@ from src.exceptions.handlers import (
 )
 from src.exceptions.input import QueryParamsCantAllBeNone
 from src.exceptions.not_found import AssetNotFound
-from src.patients.controllers import patient_controller
-from src.pharmacies.controllers import pharmacy_controller
-from src.transactions.controllers import transaction_controller
+from src.modules.patients.controllers import patient_controller
+from src.modules.pharmacies.controllers import pharmacy_controller
+from src.modules.transactions.controllers import transaction_controller
 
 app = FastAPI(title="Admission test for Bluestorm company", version="0.1.0")
 

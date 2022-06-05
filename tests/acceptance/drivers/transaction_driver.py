@@ -1,4 +1,4 @@
-from src.transactions.controllers.transaction_controller import TRANSACTIONS_URL
+from src.modules.transactions.controllers.transaction_controller import TRANSACTIONS_URL
 from tests.acceptance.drivers.auth_driver import AuthDriver
 from tests.acceptance.drivers.client import client_factory
 from fastapi.testclient import TestClient
