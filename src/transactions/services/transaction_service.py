@@ -3,6 +3,7 @@ from functools import lru_cache
 
 from fastapi import Depends
 
+from src.exceptions.not_found import TransactionNotFound
 from src.transactions.entities.transaction import Transaction
 from src.transactions.repositories.transaction_repository_impl import (
     transaction_repository_impl_factory,
@@ -15,7 +16,10 @@ class TransactionService:
         self.__transaction_repo = transaction_repository
 
     def get_transaction_by_id(self, transaction_id: str) -> Transaction:
-        return self.__transaction_repo.find_transactions_by_id(transaction_id)
+        transaction = self.__transaction_repo.find_transactions_by_id(transaction_id)
+        if transaction is None:
+            raise TransactionNotFound(transaction_id)
+        return transaction
 
     def get_transactions_where(
         self,

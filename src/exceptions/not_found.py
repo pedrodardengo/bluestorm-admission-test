@@ -36,3 +36,13 @@ class PatientNotFound(AssetNotFound):
     @staticmethod
     def generate_message(identifier: str) -> str:
         return AssetNotFound.generate_base_message("patient", "id", identifier)
+
+
+class TransactionNotFound(AssetNotFound):
+    def __init__(self, identifier: str) -> None:
+        super().__init__()
+        self.message = self.generate_message(identifier)
+
+    @staticmethod
+    def generate_message(identifier: str) -> str:
+        return AssetNotFound.generate_base_message("transaction", "id", identifier)
