@@ -2,3 +2,6 @@
 .idea
 .pre-commit-config.yaml
 README.md
+Makefile
+docker-compose.yml
+tests

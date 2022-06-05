@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from src.auth.controllers.auth_controller import AUTH_URL
-from tests.acceptance.drivers.test_client import client_factory
+from tests.acceptance.drivers.client import client_factory
 
 
 class AuthDriver:

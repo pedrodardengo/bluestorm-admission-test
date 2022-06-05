@@ -1,6 +1,6 @@
 from src.patients.controllers.patient_controller import PATIENTS_URL
 from tests.acceptance.drivers.auth_driver import AuthDriver
-from tests.acceptance.drivers.test_client import client_factory
+from tests.acceptance.drivers.client import client_factory
 from fastapi.testclient import TestClient
 
 
