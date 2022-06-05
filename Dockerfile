@@ -1,5 +1,5 @@
 FROM python:3.10 AS build-image
-RUN apt-get update && rm -rf /var/lib/apt/lists/* && apt-get install -y --no-install-recommends build-essential gcc musl-dev python3-dev libffi-dev g++
+RUN apt-get update && rm -rf /var/lib/apt/lists/* && apt-get install -y --no-install-recommends
 
 # Activating VENV
 ENV VIRTUAL_ENV=/opt/venv

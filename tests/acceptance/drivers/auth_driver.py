@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from src.auth.controllers.auth_controller import AUTH_URL
-from tests.acceptance.drivers.test_client import test_client_factory
+from tests.acceptance.drivers.test_client import client_factory
 
 
 class AuthDriver:
@@ -9,7 +9,7 @@ class AuthDriver:
     __TOKEN_URL = AUTH_URL + "/token"
 
     def __init__(self):
-        self.__test_client: TestClient = test_client_factory()
+        self.__test_client: TestClient = client_factory()
 
     @staticmethod
     def _generate_auth_header(token: str) -> dict:
