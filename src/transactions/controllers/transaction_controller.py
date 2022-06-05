@@ -8,8 +8,10 @@ from src.transactions.services.transaction_service import (
     transaction_service_factory,
 )
 
+TRANSACTIONS_URL = "/transactions"
+
 transaction_router = APIRouter(
-    prefix="/transactions",
+    prefix=TRANSACTIONS_URL,
     tags=["Transactions"],
     dependencies=[Depends(get_user_from_token)],
 )

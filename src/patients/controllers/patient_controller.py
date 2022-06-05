@@ -4,8 +4,10 @@ from src.auth.controllers.auth_controller import get_user_from_token
 from src.patients.entities.patient import Patient
 from src.patients.service.patient_service import PatientService, patient_service_factory
 
+
+PATIENTS_URL = "/patients"
 patient_router = APIRouter(
-    prefix="/patient", tags=["Patients"], dependencies=[Depends(get_user_from_token)]
+    prefix=PATIENTS_URL, tags=["Patients"], dependencies=[Depends(get_user_from_token)]
 )
 
 

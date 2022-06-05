@@ -8,8 +8,11 @@ from src.pharmacies.services.phamarcy_service import (
     pharmacy_service_factory,
 )
 
+PHARMACIES_URL = "/pharmacies"
 pharmacy_router = APIRouter(
-    prefix="/pharmacies", tags=["Pharmacy"], dependencies=[Depends(get_user_from_token)]
+    prefix=PHARMACIES_URL,
+    tags=["Pharmacy"],
+    dependencies=[Depends(get_user_from_token)],
 )
 
 

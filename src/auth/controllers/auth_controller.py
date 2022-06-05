@@ -6,8 +6,10 @@ from src.auth.services.auth_service import AuthService, auth_service_factory
 from src.users.dto.incoming_user_dto import IncomingUserDTO
 from src.users.entities.user_entity import User
 
+AUTH_URL = "/auth"
+
 auth_router = APIRouter(
-    prefix="/auth",
+    prefix=AUTH_URL,
     tags=["Authentication"],
     dependencies=[Depends(auth_service_factory)],
 )

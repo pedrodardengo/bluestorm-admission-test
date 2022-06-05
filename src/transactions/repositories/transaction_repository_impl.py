@@ -1,17 +1,22 @@
 from datetime import datetime
 from functools import lru_cache
 
+from fastapi import Depends
 from sqlalchemy import select
+from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session
 
-from src.config.database_conn import ENGINE
+from src.config.database_conn import db_engine_factory
 from src.transactions.entities.transaction import Transaction
 from src.transactions.transaction_repository import TransactionRepository
 
 
 class TransactionRepositoryImpl(TransactionRepository):
+    def __init__(self, engine: Engine):
+        self.__engine = engine
+
     def find_transactions_by_id(self, transaction_id: str) -> Transaction:
-        with Session(ENGINE) as session:
+        with Session(self.__engine) as session:
             statement = (
                 select(Transaction).join(Transaction.patient).join(Transaction.pharmacy)
             )
@@ -26,7 +31,7 @@ class TransactionRepositoryImpl(TransactionRepository):
         after_date: datetime | None,
         before_date: datetime | None,
     ) -> list[Transaction]:
-        with Session(ENGINE) as session:
+        with Session(self.__engine) as session:
             statement = select(Transaction)
             if patient_id is not None:
                 statement = statement.where(Transaction.patient_id == patient_id)
@@ -45,5 +50,7 @@ class TransactionRepositoryImpl(TransactionRepository):
 
 
 @lru_cache
-def transaction_repository_impl_factory() -> TransactionRepositoryImpl:
-    return TransactionRepositoryImpl()
+def transaction_repository_impl_factory(
+    db_engine: Engine = Depends(db_engine_factory),
+) -> TransactionRepositoryImpl:
+    return TransactionRepositoryImpl(db_engine)
