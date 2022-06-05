@@ -1,6 +1,3 @@
-import os
-
-import uvicorn
 from fastapi import FastAPI
 
 from src.modules.auth.controllers import auth_controller
@@ -29,14 +26,3 @@ app.include_router(auth_controller.auth_router)
 app.include_router(patient_controller.patient_router)
 app.include_router(pharmacy_controller.pharmacy_router)
 app.include_router(transaction_controller.transaction_router)
-
-if __name__ == "__main__":
-    os.environ["TOKEN_SECRET"] = "AFakeTokenSecret"
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=8000,
-        log_level="debug",
-        workers=1,
-        reload=True,
-    )

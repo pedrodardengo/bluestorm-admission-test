@@ -6,4 +6,4 @@ services:
     ports:
     - 8000:8000
     environment:
-    - TOKEN_SECRET=AFakeToken
+    - TOKEN_SECRET=ThisIsATokenSecret!!
