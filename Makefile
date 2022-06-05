@@ -6,9 +6,14 @@ help:
 	@echo "To run the project type make run"
 	@echo "------------------------------------"
 
-run:
+setup:
 	@docker-compose build
+
+run:
 	@docker-compose up
+
+test:
+	@python3 -m pytest
 
 docs:
 	@echo "Click here: http://localhost:8000/docs"
