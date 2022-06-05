@@ -37,15 +37,10 @@ class Driver:
         url = PATIENTS_URL + "/" + patient_id
         return self.__test_client.get(url, headers=header).json()
 
-    def get_pharmacy(self, pharmacy_id: str, token: str) -> dict:
-        header = self.__generate_auth_header(token)
-        url = PHARMACIES_URL + "/" + pharmacy_id
-        return self.__test_client.get(url, headers=header).json()
-
     def get_pharmacies(self, token: str, **kwargs) -> dict:
         header = self.__generate_auth_header(token)
         return self.__test_client.get(
-            PATIENTS_URL, headers=header, params=kwargs
+            PHARMACIES_URL, headers=header, params=kwargs
         ).json()
 
     def get_transactions(self, token: str, **kwargs) -> dict:

@@ -1,35 +1,24 @@
-from src.exceptions.auth import CouldNotValidate
 from src.exceptions.not_found import PatientNotFound
 from tests.acceptance.driver import Driver
+from tests.acceptance.dsl.auth_dsl import AuthDSL
 
 
-class PatientDSL:
+class PatientDSL(AuthDSL):
     def __init__(self, driver: Driver) -> None:
-        self.__driver = driver
-        self.__token = ""
+        AuthDSL.__init__(self, driver)
         self.__patient_id = ""
-        self.__response = {any: any}
 
     def reset_data_cache(self):
-        self.__token = ""
+        self._token = ""
         self.__patient_id = ""
-        self.__response = {}
-
-    def do_not_login_as_admin(self) -> None:
-        self.__token = "AFakeToken"
-
-    def login_as_admin(self) -> None:
-        self.__token = self.__driver.get_admin_token()
+        self._response = {}
 
     def get_patient_01(self) -> None:
         self.__patient_id = "PATIENT0001"
-        self.__response = self.__driver.get_patient(self.__patient_id, self.__token)
-
-    def assert_response_is_unauthorized(self) -> None:
-        assert self.__response == {"error": CouldNotValidate.MESSAGE}
+        self._response = self._driver.get_patient(self.__patient_id, self._token)
 
     def assert_response_is_patient_01_data(self) -> None:
-        assert self.__response == {
+        assert self._response == {
             "last_name": "SILVA",
             "first_name": "JOANA",
             "birth_date": "1996-10-25",
@@ -38,9 +27,9 @@ class PatientDSL:
 
     def get_non_existent_patient(self) -> None:
         self.__patient_id = "NOT_A_PATIENT"
-        self.__response = self.__driver.get_patient(self.__patient_id, self.__token)
+        self._response = self._driver.get_patient(self.__patient_id, self._token)
 
     def assert_response_is_not_found(self) -> None:
-        assert self.__response == {
+        assert self._response == {
             "error": PatientNotFound.generate_message(self.__patient_id)
         }
