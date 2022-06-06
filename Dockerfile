@@ -22,5 +22,4 @@ COPY --from=build-image $VIRTUAL_ENV $VIRTUAL_ENV
 WORKDIR /app
 COPY . .
 # Run it!
-ENTRYPOINT ["uvicorn", "src.main:app"]
-CMD ["--host", "0.0.0.0", "--workers", "3"]
+CMD gunicorn -k uvicorn.workers.UvicornWorker src.main:app
