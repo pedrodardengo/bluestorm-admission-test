@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from src.tools.users.entities.user_entity import User
+from src.modules.users.entities.user_entity import User
 
 
 class UserRepository(ABC):

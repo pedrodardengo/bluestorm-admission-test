@@ -1,9 +1,12 @@
-class AssetAlreadyExists(Exception):
+from src.exceptions.api_exception import APIException
+
+
+class AssetAlreadyExists(APIException):
     def __init__(self, asset: str, identifier_name: str, identifier: str):
-        self.message = (
+        message = (
             f"The {asset} identified by {identifier_name}: {identifier} already exist."
         )
-        super().__init__()
+        super().__init__(message, 409)
 
 
 class UserAlreadyExists(AssetAlreadyExists):

@@ -7,6 +7,7 @@ from src.modules.transactions.services.transaction_service import (
     TransactionService,
     transaction_service_factory,
 )
+from src.tools.date_tools import validate_and_parse_date
 
 TRANSACTIONS_URL = "/transactions"
 
@@ -56,11 +57,12 @@ async def get_transactions(
         )
     if transaction_id is not None:
         return transaction_service.get_transaction_by_id(transaction_id)
+
     return transaction_service.get_transactions_where(
         patient_id,
         pharmacy_id,
         less_than,
         more_than,
-        after_date,
-        before_date,
+        validate_and_parse_date(after_date),
+        validate_and_parse_date(before_date),
     )

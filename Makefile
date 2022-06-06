@@ -1,17 +1,17 @@
 
 help:
 	@echo "---------------HELP-----------------"
-	@echo "To setup the project type make setup"
+	@echo "To run the project type make run, given pre-requirements are installed"
 	@echo "To test the project type make test"
-	@echo "To run the project type make run"
-	@echo "To run without docker use make local-run, given pre-requirements are installed"
+	@echo "To setup the project on docker type make docker-setup"
+	@echo "To run wit docker use make docker-run"
 	@echo "To release to heroku use make release-heroku, requires access to Pedro's heroku account"
 	@echo "------------------------------------"
 
-setup:
+docker-setup:
 	@docker-compose build
 
-run:
+docker-run:
 	@docker-compose up
 
 test:
@@ -20,7 +20,7 @@ test:
 docs:
 	@echo "Click here: http://localhost:8000/docs"
 
-local-run:
+run:
 	@uvicorn src.main:app --reload
 
 release-heroku:

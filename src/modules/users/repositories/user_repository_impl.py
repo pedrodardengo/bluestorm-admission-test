@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session
 
 from src.config.database_conn import db_engine_factory
 from src.tools.uuid_tools import generate_uuid
-from src.tools.users.entities.user_entity import User
-from src.tools.users.user_repository import UserRepository
+from src.modules.users.entities.user_entity import User
+from src.modules.users.user_repository import UserRepository
 
 
 class UserRepositoryImpl(UserRepository):

@@ -1,7 +1,9 @@
-class Unauthorized(Exception):
+from src.exceptions.api_exception import APIException
+
+
+class Unauthorized(APIException):
     def __init__(self, message: str) -> None:
-        self.message = message
-        super().__init__()
+        super().__init__(message, 401)
 
 
 class InvalidPassword(Unauthorized):

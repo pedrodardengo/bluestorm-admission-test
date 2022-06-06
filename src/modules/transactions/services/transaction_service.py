@@ -27,22 +27,16 @@ class TransactionService:
         pharmacy_id: str | None,
         less_than: float | None,
         more_than: float | None,
-        after_date: str | None,
-        before_date: str | None,
+        after_date: datetime | None,
+        before_date: datetime | None,
     ) -> list[Transaction]:
-        after_datetime: datetime | None = None
-        before_datetime: datetime | None = None
-        if after_date is not None:
-            after_datetime = datetime.strptime(after_date, "%Y-%m-%d %H:%M:%S")
-        if before_date is not None:
-            before_datetime = datetime.strptime(before_date, "%Y-%m-%d %H:%M:%S")
         return self.__transaction_repo.find_transactions_where(
             patient_id,
             pharmacy_id,
             less_than,
             more_than,
-            after_datetime,
-            before_datetime,
+            after_date,
+            before_date,
         )
 
 

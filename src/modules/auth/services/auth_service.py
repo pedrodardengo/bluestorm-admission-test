@@ -7,9 +7,9 @@ from src.modules.auth.dto.token_dto import Token
 from src.config.settings import Settings, settings_factory
 from src.exceptions.auth import CouldNotValidate, InvalidPassword, TokenHasExpired
 from src.exceptions.not_found import UserNotFound
-from src.tools.users.dto.incoming_user_dto import IncomingUserDTO
-from src.tools.users.entities.user_entity import User
-from src.tools.users.services.user_service import UserService, user_service_factory
+from src.modules.users.dto.incoming_user_dto import IncomingUserDTO
+from src.modules.users.entities.user_entity import User
+from src.modules.users.services.user_service import UserService, user_service_factory
 
 
 class AuthService:

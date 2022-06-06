@@ -4,11 +4,11 @@ from typing import Optional
 from fastapi import Depends
 
 from src.exceptions.already_exists import UserAlreadyExists
-from src.tools.users.entities.user_entity import User
-from src.tools.users.repositories.user_repository_impl import (
+from src.modules.users.entities.user_entity import User
+from src.modules.users.repositories.user_repository_impl import (
     user_repository_impl_factory,
 )
-from src.tools.users.user_repository import UserRepository
+from src.modules.users.user_repository import UserRepository
 
 
 class UserService:

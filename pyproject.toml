@@ -10,7 +10,7 @@ ignore_missing_imports = "True"
 
 [tool.poetry]
 name = "bluestom-admission-test"
-version = "0.1.0"
+version = "0.2.0"
 description = "This project was made as part of the Bluestorm company's adimission test"
 authors = ["Pedro Mesquita <pedrodardengo@hotmail.com>"]
 

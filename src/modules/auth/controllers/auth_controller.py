@@ -3,8 +3,8 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 from src.modules.auth.dto.token_dto import Token
 from src.modules.auth.services.auth_service import AuthService, auth_service_factory
-from src.tools.users.dto.incoming_user_dto import IncomingUserDTO
-from src.tools.users.entities.user_entity import User
+from src.modules.users.dto.incoming_user_dto import IncomingUserDTO
+from src.modules.users.entities.user_entity import User
 
 AUTH_URL = "/auth"
 

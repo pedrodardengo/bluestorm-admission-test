@@ -1,7 +1,9 @@
-class AssetNotFound(Exception):
-    def __init__(self) -> None:
-        self.message: str
-        super().__init__()
+from src.exceptions.api_exception import APIException
+
+
+class AssetNotFound(APIException):
+    def __init__(self, message: str) -> None:
+        super().__init__(message, 404)
 
     @staticmethod
     def generate_base_message(asset: str, identifier_name: str, identifier: str) -> str:
@@ -10,8 +12,8 @@ class AssetNotFound(Exception):
 
 class PharmacyNotFound(AssetNotFound):
     def __init__(self, identifier: str) -> None:
-        super().__init__()
-        self.message = self.generate_message(identifier)
+        message = self.generate_message(identifier)
+        super().__init__(message)
 
     @staticmethod
     def generate_message(identifier: str) -> str:
@@ -20,8 +22,8 @@ class PharmacyNotFound(AssetNotFound):
 
 class UserNotFound(AssetNotFound):
     def __init__(self, identifier: str) -> None:
-        super().__init__()
-        self.message = self.generate_message(identifier)
+        message = self.generate_message(identifier)
+        super().__init__(message)
 
     @staticmethod
     def generate_message(identifier: str) -> str:
@@ -30,8 +32,8 @@ class UserNotFound(AssetNotFound):
 
 class PatientNotFound(AssetNotFound):
     def __init__(self, identifier: str) -> None:
-        super().__init__()
-        self.message = self.generate_message(identifier)
+        message = self.generate_message(identifier)
+        super().__init__(message)
 
     @staticmethod
     def generate_message(identifier: str) -> str:
@@ -40,8 +42,8 @@ class PatientNotFound(AssetNotFound):
 
 class TransactionNotFound(AssetNotFound):
     def __init__(self, identifier: str) -> None:
-        super().__init__()
-        self.message = self.generate_message(identifier)
+        message = self.generate_message(identifier)
+        super().__init__(message)
 
     @staticmethod
     def generate_message(identifier: str) -> str:
