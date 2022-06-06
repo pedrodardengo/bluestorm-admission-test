@@ -70,12 +70,12 @@ Foi feito deploy do projeto pelo Heroku através do proprio docker file. Acesse:
 Para execução da aplicação da forma mais simples possível utilize é necessário Docker e Docker Compose instalados. 
 Caso opte por essa opção apenas execute em sequência os seguintes comandos:
 ```
-> make setup
-> make run
+> make docker-setup
+> make docker-run
 ```
 Caso não deseje instalar o docker, é necessário possuir python 3.10, e se utilizar do poetry para instalação de
 dependências. E necessário uma .env file com o seguinte a seguinte variável de ambiente:
 TOKEN_SECRET="um token qualquer". Após as dependências devidamente instaladas pode-se usar 
-```make local-run``` para executar a aplicação.
+```make run``` para executar a aplicação.
 
 Use ```make help``` para outros comandos.
