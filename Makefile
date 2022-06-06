@@ -21,6 +21,7 @@ docs:
 	@echo "Click here: http://localhost:8000/docs"
 
 run:
+	@echo "Click here: http://localhost:8000/docs"
 	@uvicorn src.main:app --reload
 
 release-heroku:
