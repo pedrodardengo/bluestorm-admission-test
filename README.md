@@ -22,7 +22,10 @@ processo de formatação, checagem de erros, checagem de tipagem adequada etc, o
 do serviço.
  - Docker e docker-compose são utilizados para execução local do projeto e consistência no deploy.
  - O código possui testes automatizados de aceitação. Testes de aceitação são testes de ponta a ponta que testam o 
-comportamento esperado da aplicação.
+comportamento esperado da aplicação. Há também testes unitários que testam isoladamente componentes utilizando o mock
+das depedências.
+ - O GitHub actions foi utilizado como ferramenta de CI.
+ - O código foi deployado na plataforma HEROKU através do uso da dockerfile.
 
 ## Design
 
