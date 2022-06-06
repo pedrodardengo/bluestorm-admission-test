@@ -6,5 +6,5 @@ from src.exceptions.api_exception import APIException
 def handle_api_exception(request: Request, exc: APIException) -> JSONResponse:
     return JSONResponse(
         status_code=exc.status,
-        content=exc.message,
+        content={"error": exc.message},
     )
