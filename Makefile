@@ -4,7 +4,7 @@ help:
 	@echo "To run the project type make run, given pre-requirements are installed"
 	@echo "To test the project type make test"
 	@echo "To setup the project on docker type make docker-setup"
-	@echo "To run wit docker use make docker-run"
+	@echo "To run with docker use make docker-run"
 	@echo "To release to heroku use make release-heroku, requires access to Pedro's heroku account"
 	@echo "------------------------------------"
 

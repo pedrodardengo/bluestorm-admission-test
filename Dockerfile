@@ -22,4 +22,9 @@ COPY --from=build-image $VIRTUAL_ENV $VIRTUAL_ENV
 WORKDIR /app
 COPY . .
 # Run it!
+
+# In case you just wan to run locally
+# CMD gunicorn -k uvicorn.workers.UvicornWorker src.main:app  --bind 0.0.0.0:8000
+
+# In case you are building for HEROKU
 CMD gunicorn -k uvicorn.workers.UvicornWorker src.main:app
