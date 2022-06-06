@@ -63,6 +63,9 @@ intervenções e assegurando que o comportamento esperado está de fato sendo te
 
 ## Instalação
 
+Foi feito deploy do projeto pelo Heroku através do proprio docker file. Acesse: 
+[Bluestorm-Admission-Test](https://bluestorm-admission-test.herokuapp.com/docs)
+
 ### Docker
 Para execução da aplicação da forma mais simples possível utilize é necessário Docker e Docker Compose instalados. 
 Caso opte por essa opção apenas execute em sequẽncia os seguintes comandos:
