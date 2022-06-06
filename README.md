@@ -28,7 +28,7 @@ comportamento esperado da aplicação.
 
 A aplicação possui 4 camadas que são a principío independentes, porém são conectadas através do sistema de
 dependências do FastAPI. Este modelo de camda é bem famoso e usado em outros frameworks como NestJS:
-- Modules: São ocmponentes macroscópicos do sistema que tentam mapiar os domínios da regra de negócio. Eles separam as
+- Modules: São ocmponentes macroscópicos do sistema que tentam mapear os domínios da regra de negócio. Eles separam as
 funcionalidades de diferentes partes do sistema para aumentar a organização.
  - Controllers: São os Gateways da aplicação e tem a responsabilidade de validar a entrada e saída ou lidar com alguma
 lógica específica desses dois momentos. Eles podem interagir com os Services.
@@ -39,12 +39,12 @@ services e também interagem com Repositories.
 dos Services as resposabilidades de interação com banco de dados, assim os detalhes de implementação das ORM's ficam 
 nesta camada onde podem ser reaproveitados de diferentes formas pelos services.
 
-A camada de Services exigem Repositories que implementem interfaces específicas para cada Service, facilitando no futuro 
+As camadas de Services exigem Repositories que implementem interfaces específicas para cada Service, facilitando no futuro 
 modificações na solução utilizada para persistência de dados.
 
 Caso não seja evidente as vantagens desse Design note que é devido ao fato do escopo da aplicação ser bem pequeno. Em uma
 aplicação onde há diversos endpoints com funcionalidades que se sobrepõe e interagem com diversos componentes do sistema
-esse design é bem adequado, um cenários onde modulos distintos interagem, possui várias controllers, 
+esse design é bem adequado, um cenário onde modulos distintos interagem, possuem várias controllers, 
 services e repositories. Neste caso específico as coisas ficaram meio isoladas afinal há pouca sobreposição de
 funcionalidades.
 
@@ -54,7 +54,7 @@ testes deve ser tratado com cuidado. A estratégia de 4 camadas aqui é proposta
 - Scenarios: Este é o nivel onde os testes são declarados, eles estão escritas na linguagem mais próxima possível do
 domínio. Os cenários criados são cenários reais de onde algum usuário da aplicação interagiria com ela.
 - DSL: Acrônimo de Domain Specific Language, é a única camada que interage com o cenário, justamente pois o cenário só
-fala a linguagem do domínio, esta a camada que traduz a linguagem do domínio em açoes de fato para os testes.
+fala a linguagem do domínio, esta é a camada que traduz a linguagem do domínio em açoes de fato para os testes.
 - Drivers: Apesar da tradução ser feita pela camada de DSL, quem de fato executa a interação do sistema é a camada de
 drivers. É uma camada que interage externamente com o sistema, permitindo que o sistema funcione sem 
 intervenções e assegurando que o comportamento esperado está de fato sendo testado.
@@ -68,7 +68,7 @@ Foi feito deploy do projeto pelo Heroku através do proprio docker file. Acesse:
 
 ### Docker
 Para execução da aplicação da forma mais simples possível utilize é necessário Docker e Docker Compose instalados. 
-Caso opte por essa opção apenas execute em sequẽncia os seguintes comandos:
+Caso opte por essa opção apenas execute em sequência os seguintes comandos:
 ```
 > make setup
 > make run
