@@ -15,8 +15,19 @@ from src.modules.patients.controllers import patient_controller
 from src.modules.pharmacies.controllers import pharmacy_controller
 from src.modules.transactions.controllers import transaction_controller
 
-app = FastAPI(title="Admission test for Bluestorm company", version="0.1.0")
-
+app = FastAPI(
+    title="Admission Test for Bluestorm company",
+    version="0.2.0",
+    description=(
+        "Essa é a implementação feita por **Pedro Dardengo Mesquita** do teste pedido pela empresa Bluestorm "
+        "como parte de seu processo de seleção. Use **username: admin** e **password: Aa!!1111** na aba de Authorize "
+        "para utilizar as funcionalidades protegidas."
+    ),
+    contact={
+        "name": "Repositório Remoto do projeto",
+        "url": "https://github.com/pedrodardengo/bluestorm-admission-test",
+    },
+)
 app.add_exception_handler(Unauthorized, unauthorized_handler)
 app.add_exception_handler(AssetAlreadyExists, already_exists_handler)
 app.add_exception_handler(AssetNotFound, not_found_handler)
