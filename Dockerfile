@@ -22,6 +22,5 @@ COPY --from=build-image $VIRTUAL_ENV $VIRTUAL_ENV
 WORKDIR /app
 COPY . .
 # Run it!
-EXPOSE 8000
 ENTRYPOINT ["uvicorn", "src.main:app"]
 CMD ["--host", "0.0.0.0", "--workers", "3"]
